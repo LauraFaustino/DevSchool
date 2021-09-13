@@ -24,6 +24,7 @@ app.post('/matricula', async (req,resp) => {
             if (e != null){
                 return resp.send({ erro: 'Aluno já existe!' })
             }
+            
             if(!nome || nome == ''){
                 return resp.send({erro: 'O campo nome é obrigatório'})
             }
@@ -33,13 +34,24 @@ app.post('/matricula', async (req,resp) => {
             if (!turma || turma == ''){
                 return resp.send({erro:'O campo turma é obrigatório'})
             }
-            if (chamada <= 0 ) {
+
+            if (chamada < 0 ) {
                 return resp.send({erro:'O campo chamada deve receber um número valido'})
             }
             if(isNaN(chamada)){
                 return resp.send({erro: 'Valor chamada inválido'});
             }
-    
+
+            if (nome.length < 3){
+                return resp.send({erro: 'O campo nome precisa de mais de 3 caracteres'});
+            }
+            if (turma.length < 3){
+                return resp.send({erro: 'O campo turma precisa de mais de 3 caracteres'});
+            }
+            if (curso.length < 3){
+                return resp.send({erro: 'O campo curso precisa de mais de 3 caracteres'});
+            }
+
 
        let a = await db.tb_matricula.create({
            nm_aluno: nome,
