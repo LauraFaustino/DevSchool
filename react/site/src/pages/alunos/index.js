@@ -1,3 +1,8 @@
+import  {  ToastContainer,  toast  }  from  'react-toastify' ; 
+import  'react-toastify/dist/ReactToastify.css' ;
+
+import LoadingBar from 'react-top-loading-bar';
+
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -6,10 +11,12 @@ import Menu from '../../components/menu'
 
 import { Container, Conteudo } from './styled'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import Api from '../../service/api';
 const api = new Api();
+
+
 
 export default function Index() {
 
@@ -20,6 +27,8 @@ export default function Index() {
     const [curso, setCurso] = useState ('');
     const [idAlterando, setAIdlterando] = useState(0);
 
+    const loading = useRef(null);
+
      async function listar () {
         let r = await api.listar();
 
@@ -28,35 +37,37 @@ export default function Index() {
 
     async function inserir() {
 
-        if (chamada < 0) 
-            return alert('O campo chamada deve receber um número valido')
+        loading.current.continuousStart();
 
-        if (nome === '') 
-            return alert('O campo nome deve ser preenchido')
+        if (chamada < 0 ) 
+            return toast.error('O campo chamada deve receber um número valido')
 
-        if (curso === '') 
-            return alert('O campo curso deve ser preenchido')
+        if (nome == '') 
+            return toast.error('O campo nome deve ser preenchido')
 
-        if (turma === '') 
-            return alert('O campo turma deve ser preenchido')
+        if (curso == '') 
+            return toast.error('O campo curso deve ser preenchido')
+
+        if (turma == '') 
+            return toast.error('O campo turma deve ser preenchido')
 
         if (idAlterando == 0){
             let r = await api.inserir(nome, chamada, curso, turma);
 
             if (r.erro) 
-                alert(r.erro);
+                toast.dark(r.erro);
             else 
-                alert('Aluno inserido!');
+                toast.success('Aluno inserido!');
         } else{
             let r = await api.alterar(idAlterando, nome, chamada, curso, turma);
            
             if (r.erro) 
-                alert(r.erro);
+                toast.dark(r.erro);
             else 
-                alert('Aluno alterado!');
+                toast.success('Aluno alterado!');
 
         }
-
+        loading.current.complete();
         limparCampos();
         listar();
     }
@@ -79,9 +90,9 @@ export default function Index() {
                 onClick: async () => {
                     let r = await api.remover(id);
                     if (r.erro)
-                        alert(`${r.erro}`);
+                        toast.dark(`${r.erro}`);
                     else {
-                        alert('Aluno Removido');
+                        toast.success('Aluno Removido');
                         listar();
                     }
                 }
@@ -107,6 +118,8 @@ export default function Index() {
 
     return (
         <Container>
+            <ToastContainer/>
+            <LoadingBar color='#000d1a' width= '1em' ref={loading} />
             <Menu />
             <Conteudo>
                 <Cabecalho />
