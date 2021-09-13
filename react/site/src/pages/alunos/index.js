@@ -39,18 +39,6 @@ export default function Index() {
 
         loading.current.continuousStart();
 
-        if (chamada < 0 ) 
-            return toast.error('O campo chamada deve receber um número valido')
-
-        if (nome == '') 
-            return toast.error('O campo nome deve ser preenchido')
-
-        if (curso == '') 
-            return toast.error('O campo curso deve ser preenchido')
-
-        if (turma == '') 
-            return toast.error('O campo turma deve ser preenchido')
-
         if (idAlterando == 0){
             let r = await api.inserir(nome, chamada, curso, turma);
 
