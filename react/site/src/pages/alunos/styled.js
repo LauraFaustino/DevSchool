@@ -261,6 +261,14 @@ const Container = styled.div`
         width: .1em;
     }
 
+    tr:houver {
+        
+        .coluna-acao > button {
+            visibility: hidden;
+        }
+
+    }
+
     button {
         cursor: pointer;
     }
