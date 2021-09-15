@@ -34,6 +34,9 @@ app.post('/matricula', async (req,resp) => {
             if (!turma || turma == ''){
                 return resp.send({erro:'O campo turma é obrigatório'})
             }
+            if (!chamada|| chamada == ''){
+                return resp.send({erro:'O campo chamada é obrigatório'})
+            }
 
             if (chamada < 0 ) {
                 return resp.send({erro:'O campo chamada deve receber um número valido'})
