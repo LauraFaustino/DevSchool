@@ -22,37 +22,37 @@ app.post('/matricula', async (req,resp) => {
 
        let e = await db.tb_matricula.findOne({where: {nr_chamada: chamada, nm_turma: turma } })
             if (e != null){
-                return resp.send({ erro: 'Aluno já existe!' })
+                return resp.send({ erro: '❌Aluno já existe!' })
             }
             
             if(!nome || nome == ''){
-                return resp.send({erro: 'O campo nome é obrigatório'})
+                return resp.send({erro: '❌ O campo nome é obrigatório'})
             }
             if (!curso || curso == ''){
-                return resp.send({erro:'O campo curso é obrigatório'})
+                return resp.send({erro:'❌ O campo curso é obrigatório'})
             }
             if (!turma || turma == ''){
-                return resp.send({erro:'O campo turma é obrigatório'})
+                return resp.send({erro:'❌ O campo turma é obrigatório'})
             }
             if (!chamada|| chamada == ''){
-                return resp.send({erro:'O campo chamada é obrigatório'})
+                return resp.send({erro:'❌ O campo chamada é obrigatório'})
             }
 
-            if (chamada < 0 ) {
-                return resp.send({erro:'O campo chamada deve receber um número valido'})
+            if (chamada <= 0) {
+                return resp.send({erro:'❌O campo chamada deve receber um número valido'})
             }
             if(isNaN(chamada)){
-                return resp.send({erro: 'Valor chamada inválido'});
+                return resp.send({erro: '❌Valor chamada inválido'});
             }
 
             if (nome.length < 3){
-                return resp.send({erro: 'O campo nome precisa de mais de 3 caracteres'});
+                return resp.send({erro: '❌O campo nome precisa de mais de 3 caracteres'});
             }
             if (turma.length < 3){
-                return resp.send({erro: 'O campo turma precisa de mais de 3 caracteres'});
+                return resp.send({erro: '❌O campo turma precisa de mais de 3 caracteres'});
             }
             if (curso.length < 3){
-                return resp.send({erro: 'O campo curso precisa de mais de 3 caracteres'});
+                return resp.send({erro: '❌O campo curso precisa de mais de 3 caracteres'});
             }
 
 

@@ -43,16 +43,16 @@ export default function Index() {
             let r = await api.inserir(nome, chamada, curso, turma);
 
             if (r.erro) 
-                toast.dark(r.erro);
+                toast.error(`${r.erro}`);
             else 
-                toast.success('Aluno inserido!');
+                toast.success('✔️Aluno inserido!');
         } else{
             let r = await api.alterar(idAlterando, nome, chamada, curso, turma);
            
             if (r.erro) 
-                toast.dark(r.erro);
+                toast.error(`${r.erro}`);
             else 
-                toast.success('Aluno alterado!');
+                toast.success('✔️Aluno alterado!');
 
         }
         loading.current.complete();
@@ -78,9 +78,9 @@ export default function Index() {
                 onClick: async () => {
                     let r = await api.remover(id);
                     if (r.erro)
-                        toast.dark(`${r.erro}`);
+                        toast.error(`${r.erro}`);
                     else {
-                        toast.success('Aluno Removido');
+                        toast.success('✔️Aluno Removido');
                         listar();
                     }
                 }
@@ -107,7 +107,7 @@ export default function Index() {
     return (
         <Container>
             <ToastContainer/>
-            <LoadingBar color='#000d1a' width= '1em' ref={loading} />
+            <LoadingBar color='#cc3399' width= '2em' ref={loading} />
             <Menu />
             <Conteudo>
                 <Cabecalho />
@@ -116,7 +116,7 @@ export default function Index() {
                         
                         <div class="text-new-student">
                             <div class="bar-new-student"></div>
-                            <div class="text-new-student">{ idAlterando == 0 ? "Novo Aluno" : "Alterando Aluno " + idAlterando }</div>
+                            <div class="text-new-student">{ idAlterando == 0 ? "Novo Aluno" : "Alterando Aluno " + idAlterando}</div>
                         </div>
 
                         <div class="input-new-student"> 
