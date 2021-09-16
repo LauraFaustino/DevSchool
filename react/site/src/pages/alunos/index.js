@@ -45,14 +45,14 @@ export default function Index() {
             if (r.erro) 
                 toast.error(`${r.erro}`);
             else 
-                toast.success('✔️Aluno inserido!');
+                toast.success('✔️ Aluno inserido!');
         } else{
             let r = await api.alterar(idAlterando, nome, chamada, curso, turma);
            
             if (r.erro) 
                 toast.error(`${r.erro}`);
             else 
-                toast.success('✔️Aluno alterado!');
+                toast.success('✔️ Aluno alterado!');
 
         }
         loading.current.complete();
@@ -80,7 +80,7 @@ export default function Index() {
                     if (r.erro)
                         toast.error(`${r.erro}`);
                     else {
-                        toast.success('✔️Aluno Removido');
+                        toast.success('✔️ Aluno Removido');
                         listar();
                     }
                 }
@@ -107,7 +107,7 @@ export default function Index() {
     return (
         <Container>
             <ToastContainer/>
-            <LoadingBar color='#cc3399' width= '2em' ref={loading} />
+            <LoadingBar color='#cc3399' height= '5px' ref={loading} />
             <Menu />
             <Conteudo>
                 <Cabecalho />
