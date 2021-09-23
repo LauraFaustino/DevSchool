@@ -168,7 +168,7 @@ export default function Index() {
 
                             {alunos.map((item, i) =>
 
-                                <tr className= { i % 2 == 0 ? "Linha-alternada": ""}>
+                                <tr className= { i % 2 === 0 ? "Linha-alternada": ""}>
                                     <td> {item.id_matricula} </td>
                                     <td title={ item.nm_aluno }> 
                                         {item.nm_aluno != null && item.nm_aluno.length >= 25 
