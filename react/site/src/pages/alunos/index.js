@@ -39,7 +39,7 @@ export default function Index() {
 
         loading.current.continuousStart();
 
-        if (idAlterando == 0){
+        if (idAlterando === 0){
             let r = await api.inserir(nome, chamada, curso, turma);
 
             if (r.erro) 
@@ -116,7 +116,7 @@ export default function Index() {
                         
                         <div class="text-new-student">
                             <div class="bar-new-student"></div>
-                            <div class="text-new-student">{ idAlterando == 0 ? "Novo Aluno" : "Alterando Aluno " + idAlterando}</div>
+                            <div class="text-new-student">{ idAlterando === 0 ? "Novo Aluno" : "Alterando Aluno " + idAlterando}</div>
                         </div>
 
                         <div class="input-new-student"> 
@@ -141,7 +141,7 @@ export default function Index() {
                                     <div class="input"> <input type="text" value={turma} onChange={e => setTurma(e.target.value)}/> </div> 
                                 </div>
                             </div>
-                            <div class="button-create"> <button onClick={inserir}> {idAlterando == 0 ? "Cadastrar" : "Alterar"} </button> </div>
+                            <div class="button-create"> <button onClick={inserir}> {idAlterando === 0 ? "Cadastrar" : "Alterar"} </button> </div>
                         </div>
                     </div>
 
